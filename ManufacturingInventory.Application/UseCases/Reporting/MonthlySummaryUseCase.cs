@@ -31,7 +31,7 @@ namespace ManufacturingInventory.Application.UseCases {
             IEnumerable<PartInstance> partInstances = new List<PartInstance>();
             switch (input.CollectType) {
                 case CollectType.OnlyCostReported:
-                    partInstances= await this._partInstanceProvider.GetEntityListAsync(instance => instance.CostReported || (instance.IsBubbler && instance.DateInstalled >= dStart && instance.DateInstalled <= dStop));
+                    partInstances= await this._partInstanceProvider.GetEntityListAsync(instance => instance.CostReported || (instance.IsBubbler && instance.DateInstalled >= dStart && instance.DateInstalled <= dStop && instance.Transactions.Where(e => e.InventoryAction == InventoryAction.RETURNING).Count() == 0));
                     break;
                 case CollectType.AllItems:
                     partInstances = await this._partInstanceProvider.GetEntityListAsync();
@@ -64,22 +64,41 @@ namespace ManufacturingInventory.Application.UseCases {
                 double incomingCostTotal, incomingCostRange, outgoingCostTotal, outgoingCostRange, currentCost;
 
                 if (partInstance.IsBubbler) {
-                    incomingQtyTotal = incomingTransactions.Sum(e => e.PartInstance.BubblerParameter.NetWeight);
-                    //incomingCostTotal = incomingTransactions.Sum(e => e.TotalCost);
-                    incomingCostTotal = incomingTransactions.Sum(e => e.PartInstance.BubblerParameter.NetWeight * e.UnitCost);
+                    incomingQtyTotal = incomingTransactions.Sum(e => e.MeasuredWeight);
 
-                    incomingQtyRange = incomingTransactions.Where(e => e.TimeStamp <= dStop).Sum(e => e.PartInstance.BubblerParameter.NetWeight);
-                    //incomingCostRange = incomingTransactions.Where(e => e.TimeStamp <= dStop).Sum(e => e.TotalCost);
-                    incomingCostRange = incomingTransactions.Where(e => e.TimeStamp <= dStop).Sum(e => e.PartInstance.BubblerParameter.NetWeight * e.UnitCost);
+                    incomingQtyTotal = incomingTransactions.Sum(e => e.MeasuredWeight);
+                    incomingCostTotal = incomingTransactions.Sum(e => e.TotalCost);
+                    //incomingCostTotal = incomingTransactions.Sum(e => e.MeasuredWeight * e.UnitCost);
 
-                    outgoingQtyTotal = outgoingTransactions.Sum(e => e.PartInstance.BubblerParameter.NetWeight);
-                    //outgoingCostTotal = outgoingTransactions.Sum(e => e.TotalCost);
-                    outgoingCostTotal = outgoingTransactions.Sum(e => e.PartInstance.BubblerParameter.NetWeight * e.UnitCost);
+                    incomingQtyRange = incomingTransactions.Where(e => e.TimeStamp <= dStop).Sum(e => e.MeasuredWeight);
+                    incomingCostRange = incomingTransactions.Where(e => e.TimeStamp <= dStop).Sum(e => e.TotalCost);
+                    //incomingCostRange = incomingTransactions.Where(e => e.TimeStamp <= dStop).Sum(e => e.MeasuredWeight * e.UnitCost);
 
-                    outgoingQtyRange = outgoingTransactions.Where(e => e.TimeStamp <= dStop).Sum(e => e.PartInstance.BubblerParameter.NetWeight);
-                    outgoingCostRange = outgoingTransactions.Where(e => e.TimeStamp <= dStop).Sum(e => e.PartInstance.BubblerParameter.NetWeight*e.UnitCost);
-                    currentQty = partInstance.BubblerParameter.NetWeight;
-                    currentCost = partInstance.UnitCost*currentQty;
+                    outgoingQtyTotal = outgoingTransactions.Sum(e => e.MeasuredWeight);
+                    outgoingCostTotal = outgoingTransactions.Sum(e => e.TotalCost);
+                    //outgoingCostTotal = outgoingTransactions.Sum(e => e.MeasuredWeight * e.UnitCost);
+
+                    outgoingQtyRange = outgoingTransactions.Where(e => e.TimeStamp <= dStop).Sum(e => e.MeasuredWeight);
+                    outgoingCostRange = outgoingTransactions.Where(e => e.TimeStamp <= dStop).Sum(e => e.MeasuredWeight * e.UnitCost);
+                    currentQty = partInstance.BubblerParameter.Measured *partInstance.Quantity;
+                    currentCost = partInstance.UnitCost * currentQty;
+
+                    //incomingQtyTotal = incomingTransactions.Sum(e => e.PartInstance.BubblerParameter.Measured);
+                    ////incomingCostTotal = incomingTransactions.Sum(e => e.TotalCost);
+                    //incomingCostTotal = incomingTransactions.Sum(e => e.PartInstance.BubblerParameter.Measured * e.UnitCost);
+
+                    //incomingQtyRange = incomingTransactions.Where(e => e.TimeStamp <= dStop).Sum(e => e.PartInstance.BubblerParameter.Measured);
+                    ////incomingCostRange = incomingTransactions.Where(e => e.TimeStamp <= dStop).Sum(e => e.TotalCost);
+                    //incomingCostRange = incomingTransactions.Where(e => e.TimeStamp <= dStop).Sum(e => e.PartInstance.BubblerParameter.Measured * e.UnitCost);
+
+                    //outgoingQtyTotal = outgoingTransactions.Sum(e => e.PartInstance.BubblerParameter.Measured);
+                    ////outgoingCostTotal = outgoingTransactions.Sum(e => e.TotalCost);
+                    //outgoingCostTotal = outgoingTransactions.Sum(e => e.PartInstance.BubblerParameter.Measured * e.UnitCost);
+
+                    //outgoingQtyRange = outgoingTransactions.Where(e => e.TimeStamp <= dStop).Sum(e => e.PartInstance.BubblerParameter.Measured);
+                    //outgoingCostRange = outgoingTransactions.Where(e => e.TimeStamp <= dStop).Sum(e => e.PartInstance.BubblerParameter.Measured * e.UnitCost);
+                    //currentQty = partInstance.BubblerParameter.Measured;
+                    //currentCost = partInstance.UnitCost*currentQty;
                 } else {
                     incomingQtyTotal = incomingTransactions.Sum(e => e.Quantity);
                     incomingCostTotal = incomingTransactions.Sum(e => e.TotalCost);
@@ -102,6 +121,8 @@ namespace ManufacturingInventory.Application.UseCases {
                 PartSummary partSummary = new PartSummary();
                 partSummary.PartName = partInstance.Part.Name;
                 partSummary.InstanceName = partInstance.Name;
+                partSummary.SerialNumber = partInstance.SerialNumber;
+                partSummary.BatchNumber = partInstance.BatchNumber;
 
                 partSummary.DateIn = dateIn;
                 partSummary.Age = (today - partSummary.DateIn).Days;

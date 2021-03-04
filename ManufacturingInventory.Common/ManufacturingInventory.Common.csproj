@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWpf>True</UseWpf>
-    <FileVersion>1.5.293.7578</FileVersion>
+    <FileVersion>1.5.296.33608</FileVersion>
     <Configurations>Debug;Release;fr;other</Configurations>
     <Platforms>AnyCPU;x64;x86</Platforms>
   </PropertyGroup>
@@ -13,8 +13,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DevExpress.WindowsDesktop.Core" Version="19.1.9" />
-    <PackageReference Include="DevExpress.WindowsDesktop.Wpf" Version="19.1.9" />
+    <PackageReference Include="DevExpress.WindowsDesktop.Core" Version="19.1.11" />
+    <PackageReference Include="DevExpress.WindowsDesktop.Wpf" Version="19.1.11" />
     <PackageReference Include="Effortless.Net.Encryption" Version="1.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.2" />

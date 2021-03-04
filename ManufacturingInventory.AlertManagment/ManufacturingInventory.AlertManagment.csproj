@@ -3,16 +3,16 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
     <AssemblyName>ManufacturingInventory.AlertManagment</AssemblyName>
-    <FileVersion>1.1.101.7578</FileVersion>
+    <FileVersion>1.1.103.33608</FileVersion>
     <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="DevExpress.WindowsDesktop.Core" Version="19.1.9" />
-    <PackageReference Include="DevExpress.WindowsDesktop.Mvvm" Version="19.1.9" />
-    <PackageReference Include="DevExpress.WindowsDesktop.Wpf" Version="19.1.9" />
+    <PackageReference Include="DevExpress.WindowsDesktop.Core" Version="19.1.11" />
+    <PackageReference Include="DevExpress.WindowsDesktop.Mvvm" Version="19.1.11" />
+    <PackageReference Include="DevExpress.WindowsDesktop.Wpf" Version="19.1.11" />
     <PackageReference Include="Prism.Wpf" Version="7.2.0.1422" />
     <PackageReference Include="Serilog" Version="2.9.0" />
     <PackageReference Include="Serilog.Enrichers.Thread" Version="3.1.0" />

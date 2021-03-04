@@ -10,6 +10,8 @@ namespace ManufacturingInventory.Domain.DTOs {
         public DateTime Today { get; set; }
         public DateTime DateIn { get; set; }
         public int Age { get; set; }
+        public string SerialNumber { get; set; }
+        public string BatchNumber { get; set; }
 
         public double StartQuantity { get; set; }
         public double StartCost { get; set; }

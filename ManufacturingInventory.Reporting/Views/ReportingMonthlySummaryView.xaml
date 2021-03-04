@@ -142,8 +142,8 @@
                             </dxg:GridControl.View>
                             <dxg:GridColumn FieldName="PartName" Header="Part Category" VisibleIndex="0"/>
                             <dxg:GridColumn FieldName="InstanceName"
-                                        Header="Part"
-                                        VisibleIndex="1" />
+                                            Header="Part"
+                                            VisibleIndex="1" />
                             <dxg:GridColumn FieldName="Today"  VisibleIndex="2"/>
                             <dxg:GridColumn FieldName="DateIn"  VisibleIndex="3" />
                             <dxg:GridColumn FieldName="Age"  VisibleIndex="4">
@@ -153,8 +153,11 @@
                                                           Mask="d" />
                                 </dxg:GridColumn.EditSettings>
                             </dxg:GridColumn>
-                            <dxg:GridColumn FieldName="StartQuantity"  VisibleIndex="5"
-                                                Header="Starting Qty">
+                        <dxg:GridColumn FieldName="SerialNumber" VisibleIndex="5" />
+                        <dxg:GridColumn FieldName="BatchNumber"  VisibleIndex="6" />
+                        <dxg:GridColumn FieldName="StartQuantity" 
+                                        VisibleIndex="7"
+                                        Header="Starting Qty">
                                     <dxg:GridColumn.EditSettings>
                                         <dxe:TextEditSettings MaskType="Numeric" 
                                                                 MaskUseAsDisplayFormat="True"

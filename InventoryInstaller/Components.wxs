@@ -23,8 +23,7 @@ xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
                   Target="[INSTALLFOLDER]ManufacturingApplication.exe"
                   Directory="InstallProgramMenuFolder"
                   WorkingDirectory="INSTALLFOLDER"
-                  Icon="seti_logo.ico"
-                  />
+                  Icon="seti_logo.ico" />
 
         <!-- Our unique key for this component/shortcut -->
         <RegistryValue Id="RegShortcutKey" Root="HKCU" Key="SOFTWARE\!(loc.ProductNameFolder)" Name="Shortcut" Value="1" Type="integer" KeyPath="yes" />
