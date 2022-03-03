@@ -2,13 +2,15 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?if $(var.Platform)="x64"?>
   <!--<?define ProductCode="{374D9223-026A-407D-B549-F027E77F267E}"?>-->
-  <?define ProductCode="{1C1D9516-F0E0-4151-8109-6BC72319B618}"?>
+  <?define ProductCode="{E62EDD79-A275-465D-AAEA-F1C1090B3C33}"?>
   <?else?>
   <!--<?define ProductCode="{E5B93625-348D-4BF5-ACE5-C65B34884DD0}"?>-->
   <?define ProductCode="{0E9C3368-6BE9-429A-AC01-09C0979A4797}"?>
   <?endif?>
 
   <?define UpgradeCode = "{049092C0-8A44-4421-9916-152E140D52D3}" ?>
+  <!--<?define UpgradeCode = "{E62EDD79-A275-465D-AAEA-F1C1090B3C33}" ?>-->
+  
 
 	<Product Id="$(var.ProductCode)" 
            Name="!(loc.ProductName_$(var.Platform))"

@@ -46,30 +46,57 @@ namespace ManufacturingInventory.ConsoleTesting {
             //Console.WriteLine("Individual Value: {0}", (int)AlertType.IndividualAlert);
             //DomainDebug();
             //AuthenticateDebug();
-            AsyncContext.Run(TestngLocations);
-        }
-
-        public static async Task TestngLocations() {
             DbContextOptionsBuilder<ManufacturingContext> optionsBuilder = new DbContextOptionsBuilder<ManufacturingContext>();
             //optionsBuilder.UseSqlServer("server=172.20.4.20;database=manufacturing_inventory_dev;user=aelmendorf;password=Drizzle123!;MultipleActiveResultSets=true");
             optionsBuilder.UseSqlServer("server=172.20.4.20;database=manufacturing_inventory_dev;user=aelmendorf;password=Drizzle123!;MultipleActiveResultSets=true");
             Console.WriteLine("Running...");
-
             using var context = new ManufacturingContext(optionsBuilder.Options);
-            //IRepository<Location> locationRepository = new LocationRepository(context);
-            ILocationManagmentUseCase locationService = new LocationManagmentUseCase(context);
-            var location = await locationService.GetLocation(1);
-            location.Description = "Testing Description using the UseCase";
-            LocationManagmentInput input = new LocationManagmentInput(location,Application.Boundaries.EditAction.Update);
-            var output =await locationService.Execute(input);
-            if (output.Success) {
-                Console.WriteLine("Should be updated");
-                
+            var transaction = context.Transactions.Include(e => e.PartInstance).Include(e => e.Location).FirstOrDefault(e=>e.Id==626);
+            var partInstance = context.PartInstances.Include(e => e.Transactions).FirstOrDefault(e => e.Id == transaction.PartInstance.Id);
+            if(transaction!=null && partInstance != null) {
+                Console.WriteLine();
+                partInstance.Transactions.Remove(transaction);
+                //context.Entry<Transaction>(transaction).State = EntityState.Deleted;
+                context.Update(partInstance);
+                context.Transactions.Remove(transaction);
+                //context.Update(transaction);
+                var re=context.SaveChanges();
+                if (re > 0) {
+                    Console.WriteLine("Success");
+                } else {
+                    Console.WriteLine("Save failed...");
+                }
+
             } else {
-                Console.WriteLine("Updated Failed:");
+                Console.WriteLine("Error finding transaction and/or partInstance");
             }
-            Console.WriteLine(output.Message);
             Console.ReadKey();
+            
+
+            //AsyncContext.Run(TestngLocations);
+        }
+
+        public static async Task TestngLocations() {
+            //DbContextOptionsBuilder<ManufacturingContext> optionsBuilder = new DbContextOptionsBuilder<ManufacturingContext>();
+            ////optionsBuilder.UseSqlServer("server=172.20.4.20;database=manufacturing_inventory_dev;user=aelmendorf;password=Drizzle123!;MultipleActiveResultSets=true");
+            //optionsBuilder.UseSqlServer("server=172.20.4.20;database=manufacturing_inventory_dev;user=aelmendorf;password=Drizzle123!;MultipleActiveResultSets=true");
+            //Console.WriteLine("Running...");
+
+            //using var context = new ManufacturingContext(optionsBuilder.Options);
+            ////IRepository<Location> locationRepository = new LocationRepository(context);
+            //ILocationManagmentUseCase locationService = new LocationManagmentUseCase(context);
+            //var location = await locationService.GetLocation(1);
+            //location.Description = "Testing Description using the UseCase";
+            //LocationManagmentInput input = new LocationManagmentInput(location,Application.Boundaries.EditAction.Update);
+            //var output =await locationService.Execute(input);
+            //if (output.Success) {
+            //    Console.WriteLine("Should be updated");
+                
+            //} else {
+            //    Console.WriteLine("Updated Failed:");
+            //}
+            //Console.WriteLine(output.Message);
+            //Console.ReadKey();
 
             //var location = await locationRepository.GetEntityAsync(e => e.Id == 1);
             //location.Description = location.Name;

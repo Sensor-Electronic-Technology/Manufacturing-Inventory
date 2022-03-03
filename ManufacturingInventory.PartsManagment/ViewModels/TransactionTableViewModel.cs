@@ -112,8 +112,7 @@ namespace ManufacturingInventory.PartsManagment.ViewModels {
         }
 
         private async Task UndoTransactionHandler() {
-            if (this.SelectedTransaction != null) {
-            
+            if (this.SelectedTransaction != null) { 
                 TransactionTableUndoInput input = new TransactionTableUndoInput(this._selectedTransaction.Id);
                 var output = await this._transactionEdit.Execute(input);
                 await this.ShowActionResponse(output);

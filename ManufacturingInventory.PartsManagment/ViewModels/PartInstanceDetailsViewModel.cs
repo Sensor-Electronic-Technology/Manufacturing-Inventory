@@ -366,6 +366,13 @@ namespace ManufacturingInventory.PartsManagment.ViewModels {
             this.SelectedPartInstance.Description = this.Description;
             this.SelectedPartInstance.Comments = this.Comments;
 
+            if (this.SelectedStockType != null) {
+                if (this.SelectedStockType.IsDefault) {
+                    this.SelectedPartInstance.MinQuantity = this.MinQuantity;
+                    this.SelectedPartInstance.SafeQuantity = this.SafeQuantity;
+                }
+            }
+
             PartInstanceDetailsEditInput input = new PartInstanceDetailsEditInput(this.SelectedPartInstance);
             var output = await this._editInstance.Execute(input);
             if (output.Success) {
@@ -562,11 +569,15 @@ namespace ManufacturingInventory.PartsManagment.ViewModels {
                                 this.SafeQuantity = stockType.SafeQuantity;
                                 this.MinQuantity = stockType.MinQuantity;
                             } else {
-                                this.SafeQuantity = stockType.SafeQuantity;
-                                this.MinQuantity = stockType.MinQuantity;
                                 this.Quantity = this.SelectedPartInstance.Quantity;
+                                this.MinQuantity = this.SelectedPartInstance.MinQuantity;
+                                this.SafeQuantity = this.SelectedPartInstance.SafeQuantity;
                             }
                             this.SelectedStockType = stockType;
+                        } else {
+                            this.Quantity = this.SelectedPartInstance.Quantity;
+                            this.MinQuantity = this.SelectedPartInstance.MinQuantity;
+                            this.SafeQuantity = this.SelectedPartInstance.SafeQuantity;
                         }
 
                         this.CanEditStock = (this.SelectedPartInstance.StockTypeId == Constants.DefaultStockId) && this.CanEdit;

@@ -42,8 +42,7 @@ namespace ManufacturingInventory.Application.UseCases {
                         case InventoryAction.INCOMING:
                             var incount = partInstance.Transactions.Where(e => e.InventoryAction == InventoryAction.INCOMING).Count();
                             var outCount = partInstance.Transactions
-                                .Where(e =>
-                                e.InventoryAction == InventoryAction.OUTGOING || e.InventoryAction == InventoryAction.RETURNING)
+                                .Where(e =>e.InventoryAction == InventoryAction.OUTGOING || e.InventoryAction == InventoryAction.RETURNING)
                                 .Count();
                             if(incount==1 && outCount == 0) {
                                 return await this.ExecuteDelete(partInstance, transaction);
@@ -83,9 +82,9 @@ namespace ManufacturingInventory.Application.UseCases {
                     }
                     this._context.Alerts.Remove(partInstance.IndividualAlert);
                     partInstance.IndividualAlert = null;
-                }       
-                var instance = await this._partInstanceRepository.DeleteAsync(partInstance);
+                }
                 var trans = await this._transactionRepository.DeleteAsync(transaction);
+                var instance = await this._partInstanceRepository.DeleteAsync(partInstance);         
                 var updated = await this._categoryRepository.UpdateAsync(stockType);
                 if (updated != null && instance != null && trans != null) {
                     var count = await this._unitOfWork.Save();
@@ -112,8 +111,10 @@ namespace ManufacturingInventory.Application.UseCases {
                 if (!stockType.IsDefault) {
                     stockType.Quantity -= transaction.Quantity;
                 }
-                var instance = await this._partInstanceRepository.UpdateAsync(partInstance);
+                partInstance.Transactions.Remove(transaction);
                 var trans = await this._transactionRepository.DeleteAsync(transaction);
+                var instance = await this._partInstanceRepository.UpdateAsync(partInstance);
+                
                 var updated = await this._categoryRepository.UpdateAsync(stockType);
                 if (updated != null && instance != null && trans != null) {
                     var count = await this._unitOfWork.Save();

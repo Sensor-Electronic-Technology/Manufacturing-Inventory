@@ -3,7 +3,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
     <AssemblyName>ManufacturingInventory.LocationManagment</AssemblyName>
-    <FileVersion>1.0.34.33608</FileVersion>
+    <FileVersion>1.0.38.37743</FileVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="DevExpress.WindowsDesktop.Core" Version="19.1.11" />

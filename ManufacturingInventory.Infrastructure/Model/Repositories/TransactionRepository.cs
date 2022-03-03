@@ -64,7 +64,7 @@ namespace ManufacturingInventory.Infrastructure.Model.Repositories {
             if (transaction == null) {
                 return null;
             }
-            return (await Task.Run(() => this._context.Transactions.Remove(transaction))).Entity;
+            return this._context.Transactions.Remove(transaction).Entity;
         }
 
         public Transaction GetEntity(Expression<Func<Transaction, bool>> expression) {
