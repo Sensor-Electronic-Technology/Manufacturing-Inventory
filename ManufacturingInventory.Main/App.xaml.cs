@@ -85,8 +85,8 @@ namespace ManufacturingInventory.ManufacturingApplication {
              .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
             this.Configuration = builder.Build();
             this.optionsBuilder = new DbContextOptionsBuilder<ManufacturingContext>();
-            //this.optionsBuilder.UseSqlServer(this.Configuration.GetConnectionString("InventoryConnection"));
-            this.optionsBuilder.UseSqlServer(this.Configuration.GetConnectionString("InventoryConnection_dev"));
+            this.optionsBuilder.UseSqlServer(this.Configuration.GetConnectionString("InventoryConnection"));
+            //this.optionsBuilder.UseSqlServer(this.Configuration.GetConnectionString("InventoryConnection_dev"));
 
             ApplicationThemeHelper.ApplicationThemeName = Theme.VS2017BlueName;
             //ApplicationThemeHelper.UpdateApplicationThemeName();
