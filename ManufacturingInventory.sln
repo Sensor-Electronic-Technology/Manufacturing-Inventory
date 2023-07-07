@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29519.87
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManufacturingInventory.UI", "ManufacturingInventory.Main\ManufacturingInventory.UI.csproj", "{C59828D3-E033-4E3A-A87C-FA5472132B89}"
 EndProject
@@ -46,13 +46,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManufacturingInventory.Cate
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManufacturingInventory.Reporting", "ManufacturingInventory.Reporting\ManufacturingInventory.Reporting.csproj", "{3545472A-F854-475C-A151-44664BA3BCE2}"
 EndProject
-Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "InventoryInstaller", "InventoryInstaller\InventoryInstaller.wixproj", "{C26A06F6-39DB-47D4-A534-FE0BDDF2C77A}"
+Project("{B7DD6F7E-DEF8-4E67-B5B7-07EF123DB6F0}") = "InventoryInstaller", "InventoryInstaller\InventoryInstaller.wixproj", "{C26A06F6-39DB-47D4-A534-FE0BDDF2C77A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManufacturingInventory.AlertManagment", "ManufacturingInventory.AlertManagment\ManufacturingInventory.AlertManagment.csproj", "{59118DB5-A12E-4749-8378-C998922CE690}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManufacturingInventory.AlertEmailService", "ManufacturingInventory.AlertEmailService\ManufacturingInventory.AlertEmailService.csproj", "{C5B0A493-4511-454F-B774-21BC4CC85EFE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManufacturingInventory.LocationManagment", "ManufacturingInventory.LocationManagment\ManufacturingInventory.LocationManagment.csproj", "{241109EF-44A8-4036-9E01-849C932D02F6}"
+EndProject
+Project("{B7DD6F7E-DEF8-4E67-B5B7-07EF123DB6F0}") = "Package1", "Package1\Package1.wixproj", "{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -602,6 +604,36 @@ Global
 		{241109EF-44A8-4036-9E01-849C932D02F6}.Release|x64.Build.0 = Release|Any CPU
 		{241109EF-44A8-4036-9E01-849C932D02F6}.Release|x86.ActiveCfg = Release|Any CPU
 		{241109EF-44A8-4036-9E01-849C932D02F6}.Release|x86.Build.0 = Release|Any CPU
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.Debug|Any CPU.Build.0 = Debug|x64
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.Debug|ARM.ActiveCfg = Debug|x64
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.Debug|ARM.Build.0 = Debug|x64
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.Debug|ARM64.Build.0 = Debug|ARM64
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.Debug|x64.ActiveCfg = Debug|x64
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.Debug|x64.Build.0 = Debug|x64
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.Debug|x86.ActiveCfg = Debug|x86
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.Debug|x86.Build.0 = Debug|x86
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.other|Any CPU.ActiveCfg = Debug|x64
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.other|Any CPU.Build.0 = Debug|x64
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.other|ARM.ActiveCfg = Debug|x64
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.other|ARM.Build.0 = Debug|x64
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.other|ARM64.ActiveCfg = Debug|ARM64
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.other|ARM64.Build.0 = Debug|ARM64
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.other|x64.ActiveCfg = Debug|x64
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.other|x64.Build.0 = Debug|x64
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.other|x86.ActiveCfg = Debug|x86
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.other|x86.Build.0 = Debug|x86
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.Release|Any CPU.ActiveCfg = Release|x64
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.Release|Any CPU.Build.0 = Release|x64
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.Release|ARM.ActiveCfg = Release|x64
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.Release|ARM.Build.0 = Release|x64
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.Release|ARM64.ActiveCfg = Release|ARM64
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.Release|ARM64.Build.0 = Release|ARM64
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.Release|x64.ActiveCfg = Release|x64
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.Release|x64.Build.0 = Release|x64
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.Release|x86.ActiveCfg = Release|x86
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -627,6 +659,7 @@ Global
 		{59118DB5-A12E-4749-8378-C998922CE690} = {D4D6569B-0BC5-45CF-B000-E14C9CFD86CF}
 		{C5B0A493-4511-454F-B774-21BC4CC85EFE} = {24BF0A95-72C3-4B9B-8D54-BAF55A003A1A}
 		{241109EF-44A8-4036-9E01-849C932D02F6} = {D4D6569B-0BC5-45CF-B000-E14C9CFD86CF}
+		{E4CCB7C4-1A9A-4456-A91F-5C09B2AC8207} = {296E8ADA-8C81-4FBA-9CC4-B5C39AF06F62}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {09344567-FB58-498F-9B9B-4DEDB1165687}

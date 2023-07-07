@@ -10,15 +10,15 @@
     <PackageId>ManufacturingInventory.UI</PackageId>
     <UserSecretsId>d873c8c3-b819-4a49-87d8-529888f6ea4b</UserSecretsId>
     <Configurations>Debug;Release;fr;other</Configurations>
-    <ApplicationIcon></ApplicationIcon>
+    <ApplicationIcon>seti_appicon.ico</ApplicationIcon>
     <AssemblyVersion>3.1.208.7733</AssemblyVersion>
     <Platforms>AnyCPU;x86;x64</Platforms>
     <SignAssembly>false</SignAssembly>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Company>SETi</Company>
     <Authors>aelmendo</Authors>
     <AssemblyOriginatorKeyFile>manufacturinginventorycerf.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
+    <PackageIcon>seti_appicon.ico</PackageIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <ShouldCreateLogs>True</ShouldCreateLogs>
@@ -105,6 +105,7 @@
     <Content Include="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="seti_appicon.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
@@ -155,11 +156,18 @@
     <Resource Include="Images\seti_logo.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="seti_appicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
     <None Update="App.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="seti_appicon.ico">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 </Project>

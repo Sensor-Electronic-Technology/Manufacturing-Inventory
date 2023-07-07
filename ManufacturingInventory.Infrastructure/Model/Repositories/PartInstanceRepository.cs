@@ -112,6 +112,7 @@ namespace ManufacturingInventory.Infrastructure.Model.Repositories {
 
         public PartInstance GetEntity(Expression<Func<PartInstance, bool>> expression) {
             return this._context.PartInstances
+                .Include(e=>e.Transactions)
                 .Include(e => e.Price)
                 .Include(e => e.StockType)
                 .Include(e => e.CurrentLocation)
@@ -127,6 +128,7 @@ namespace ManufacturingInventory.Infrastructure.Model.Repositories {
 
         public async Task<PartInstance> GetEntityAsync(Expression<Func<PartInstance, bool>> expression) {
             return await this._context.PartInstances
+                .Include(e => e.Transactions)
                 .Include(e => e.Price)
                 .Include(e => e.StockType)
                 .Include(e => e.CurrentLocation)
@@ -142,6 +144,7 @@ namespace ManufacturingInventory.Infrastructure.Model.Repositories {
 
         public IEnumerable<PartInstance> GetEntityList(Expression<Func<PartInstance, bool>> expression = null, Func<IQueryable<PartInstance>, IOrderedQueryable<PartInstance>> orderBy = null) {
             IQueryable<PartInstance> query = this._context.Set<PartInstance>()
+                .Include(e => e.Transactions)
                 .Include(e => e.Price)
                 .Include(e => e.StockType)
                 .Include(e => e.CurrentLocation)
@@ -168,6 +171,7 @@ namespace ManufacturingInventory.Infrastructure.Model.Repositories {
 
         public async Task<IEnumerable<PartInstance>> GetEntityListAsync(Expression<Func<PartInstance, bool>> expression = null, Func<IQueryable<PartInstance>, IOrderedQueryable<PartInstance>> orderBy = null) {
             IQueryable<PartInstance> query = this._context.Set<PartInstance>()
+                .Include(e => e.Transactions)
                 .Include(e => e.Price)
                 .Include(e => e.StockType)
                 .Include(e => e.CurrentLocation)
@@ -193,6 +197,7 @@ namespace ManufacturingInventory.Infrastructure.Model.Repositories {
 
         public void Load() {
             this._context.PartInstances
+                .Include(e => e.Transactions)
                 .Include(e => e.Price)
                 .Include(e => e.StockType)
                 .Include(e => e.CurrentLocation)
@@ -208,6 +213,7 @@ namespace ManufacturingInventory.Infrastructure.Model.Repositories {
 
         public async Task LoadAsync() {
             await this._context.PartInstances
+                .Include(e => e.Transactions)
                 .Include(e => e.Price)
                 .Include(e => e.StockType)
                 .Include(e => e.CurrentLocation)
