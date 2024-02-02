@@ -153,11 +153,11 @@ namespace ManufacturingInventory.Application.UseCases {
                 partSummary.IncomingCost = incomingCostRange;
                 partSummary.IncomingQuantity = incomingQtyRange;
                 
-                partSummary.RndOutgoingCost = outgoingCost * MonthlySummaryUseCase.RnDFactor;
-                partSummary.RndOutgoingQuantity = outgoingQty * MonthlySummaryUseCase.RnDFactor;
+                partSummary.RndOutgoingCost = outgoingCost * (input.ResearchPercent/100);
+                partSummary.RndOutgoingQuantity = outgoingQty * (input.ResearchPercent/100);
 
-                partSummary.ProductionOutgoingCost = outgoingCost * MonthlySummaryUseCase.ProductionFactor;
-                partSummary.ProductionOutgoingQuantity = outgoingQty * MonthlySummaryUseCase.ProductionFactor;
+                partSummary.ProductionOutgoingCost = outgoingCost * (input.ProductionPercent/100);
+                partSummary.ProductionOutgoingQuantity = outgoingQty * (input.ProductionPercent/100);
 
                 partSummary.TotalOutgoingCost = outgoingCostRange;
                 partSummary.TotalOutgoingQuantity = outgoingQtyRange;

@@ -61,6 +61,28 @@
                                               HorizontalContentAlignment="Center">
                                 </dxe:DateEdit>
                             </dxlc:LayoutItem>
+                            
+
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Orientation="Horizontal"
+                                          VerticalAlignment="Center">
+                            <dxlc:LayoutItem Style="{StaticResource LayoutItemStyle}"
+                                             Label="Production Percent">
+                                <dxe:SpinEdit EditValue="{Binding ProductionPercent,Mode=TwoWay}"
+                                              MinValue="0.0"
+                                              MaxValue="100.0"
+                                              HorizontalContentAlignment="Center">
+                                </dxe:SpinEdit>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Style="{StaticResource LayoutItemStyle}"
+                                             Label="Research Percent">
+                                <dxe:SpinEdit EditValue="{Binding ResearchPercent,Mode=TwoWay}"
+                                              MinValue="0.00"
+                                              MaxValue="100"
+                                              Mask="f"
+                                              HorizontalContentAlignment="Center">
+                                </dxe:SpinEdit>
+                            </dxlc:LayoutItem>
 
                         </dxlc:LayoutGroup>
                         <dxlc:LayoutItem Label="Select Option"

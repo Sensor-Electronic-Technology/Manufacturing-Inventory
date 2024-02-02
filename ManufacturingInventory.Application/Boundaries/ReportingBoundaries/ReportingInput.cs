@@ -11,17 +11,31 @@ namespace ManufacturingInventory.Application.Boundaries.ReportingBoundaries {
         public DateTime StartDate { get; set; }
         public DateTime StopDate { get; set; }
         public CollectType CollectType { get; set; }
+        public double ProductionPercent { get; set; }
+        public double ResearchPercent { get; set; }
 
         public MonthlyReportInput() {
             this.StartDate = DateTime.Now;
             this.StopDate = DateTime.Now;
             this.CollectType = CollectType.OnlyCostReported;
+            this.ProductionPercent = 90;
+            this.ResearchPercent = 10;
         }
 
         public MonthlyReportInput(DateTime start,DateTime stop,CollectType collectType) {
             this.StartDate = start;
             this.StopDate = stop;
             this.CollectType = collectType;
+            this.ProductionPercent = 90;
+            this.ResearchPercent = 10;
+        }
+        
+        public MonthlyReportInput(DateTime start,DateTime stop,CollectType collectType,double pPer,double rPer) {
+            this.StartDate = start;
+            this.StopDate = stop;
+            this.CollectType = collectType;
+            this.ProductionPercent = pPer;
+            this.ResearchPercent = rPer;
         }
     }
 

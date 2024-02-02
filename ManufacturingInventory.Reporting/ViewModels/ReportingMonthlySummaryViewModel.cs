@@ -27,6 +27,8 @@ namespace ManufacturingInventory.Reporting.ViewModels {
         private CollectType _selectedCollectionType;
         private DateTime _start;
         private DateTime _stop;
+        private decimal _prodPercent=new Decimal(90.0);
+        private decimal _rndPercent=new Decimal(10.0);
         private bool _showTableLoading;
 
         public AsyncCommand<ExportFormat> ExportTableCommand { get; private set; }
@@ -56,6 +58,16 @@ namespace ManufacturingInventory.Reporting.ViewModels {
             get => this._stop;
             set => SetProperty(ref this._stop, value);
         }
+        public decimal ProductionPercent {
+            get => this._prodPercent;
+            set=>SetProperty(ref this._prodPercent, value);
+        }
+
+        public decimal ResearchPercent {
+            get => this._rndPercent;
+            set =>SetProperty(ref this._rndPercent, value);
+            
+        }
 
         public bool ShowTableLoading {
             get => this._showTableLoading;
@@ -67,7 +79,7 @@ namespace ManufacturingInventory.Reporting.ViewModels {
             set => SetProperty(ref this._selectedCollectionType, value);
         }
 
-        private async Task CollectSummaryHandler() {
+        /*private async Task CollectSummaryHandler() {
             MonthlyReportInput reportInput = new MonthlyReportInput(this._start, this._stop,this._selectedCollectionType);
             this.DispatcherService.BeginInvoke(() => this.ShowTableLoading=true);
             var output=await this._reportingService.Execute(reportInput);
@@ -75,6 +87,25 @@ namespace ManufacturingInventory.Reporting.ViewModels {
                 this.ReportSnapshot = new ObservableCollection<PartSummary>(output.MonthlyReport);            
             } else {
                 this.MessageBoxService.ShowMessage(output.Message,"",MessageButton.OK,MessageIcon.Error);
+            }
+            this.DispatcherService.BeginInvoke(() => this.ShowTableLoading = false);
+        }*/
+        
+        private async Task CollectSummaryHandler() {
+            if ((this._prodPercent + this._rndPercent)==100) {
+                MonthlyReportInput reportInput = new MonthlyReportInput(this._start, this._stop,
+                    this._selectedCollectionType,(double)this._prodPercent,(double)this._rndPercent);
+                this.DispatcherService.BeginInvoke(() => this.ShowTableLoading=true);
+                var output=await this._reportingService.Execute(reportInput);
+                if (output.Success) {
+                    this.ReportSnapshot = new ObservableCollection<PartSummary>(output.MonthlyReport);            
+                } else {
+                    this.MessageBoxService.ShowMessage(output.Message,"",MessageButton.OK,MessageIcon.Error);
+                }
+                
+            } else {
+                this.MessageBoxService.ShowMessage("Production and Research percents" +
+                                                   " don't add up to 100","",MessageButton.OK, MessageIcon.Error);
             }
             this.DispatcherService.BeginInvoke(() => this.ShowTableLoading = false);
         }
