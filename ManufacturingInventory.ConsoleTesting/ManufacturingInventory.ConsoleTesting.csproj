@@ -75,7 +75,6 @@
     <ProjectReference Include="..\ManufacturingInventory.Common\ManufacturingInventory.Common.csproj" />
     <ProjectReference Include="..\ManufacturingInventory.Domain\ManufacturingInventory.Domain.csproj" />
     <ProjectReference Include="..\ManufacturingInventory.Infrastructure\ManufacturingInventory.Infrastructure.csproj" />
-    <ProjectReference Include="..\ManufacturingInventory.Installer.InstallSequence\ManufacturingInventory.InstallSequence.csproj" />
   </ItemGroup>
 
 </Project>

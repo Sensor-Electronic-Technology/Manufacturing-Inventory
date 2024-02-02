@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs" xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
   <?if $(var.Platform)="x64"?>
   <!--<?define ProductCode="{374D9223-026A-407D-B549-F027E77F267E}"?>-->
   <?define ProductCode="{1C1D9516-F0E0-4151-8109-6BC72319B618}"?>
@@ -10,30 +9,17 @@
 
   <?define UpgradeCode = "{049092C0-8A44-4421-9916-152E140D52D3}" ?>
 
-	<Product Id="$(var.ProductCode)" 
-           Name="!(loc.ProductName_$(var.Platform))"
-           Language="!(loc.Language)"  
-           Version="$(var.BuildVersion)" 
-           Manufacturer="!(loc.Company)" 
-           UpgradeCode="$(var.UpgradeCode)">
+	<Package Name="!(loc.ProductName_$(var.Platform))" Language="!(loc.Language)" Version="$(var.BuildVersion)" Manufacturer="!(loc.Company)" UpgradeCode="$(var.UpgradeCode)" InstallerVersion="200" ProductCode="$(var.ProductCode)">
     
-		<Package InstallerVersion="200" 
-             Compressed="yes"
-             InstallScope="perMachine" 
-             Platform="$(var.Platform)"
-             Manufacturer="!(loc.Company)"
-             Description="!(loc.Description)"
-             Keywords="!(loc.Keywords)"
-             Comments="!(loc.Comments)"
-             Languages="!(loc.Language)"/>
+		<SummaryInformation Manufacturer="!(loc.Company)" Description="!(loc.Description)" Keywords="!(loc.Keywords)" />
     
-    <MajorUpgrade Schedule="afterInstallInitialize" DowngradeErrorMessage="A later version of [ProductName] is already installed. Setup will now exit."/>
+    <MajorUpgrade Schedule="afterInstallInitialize" DowngradeErrorMessage="A later version of [ProductName] is already installed. Setup will now exit." />
 		<MediaTemplate EmbedCab="yes" />
     
-    <Icon Id="seti_logo.ico" SourceFile="$(var.ManufacturingInventory.ProjectDir)\Images\seti_logo.ico"/>
-    <Property Id="ARPPRODUCTICON">seti_logo.ico</Property>
+    <Icon Id="seti_logo.ico" SourceFile="$(var.ManufacturingInventory.ProjectDir)\Images\seti_logo.ico" />
+    <Property Id="ARPPRODUCTICON" Value="seti_logo.ico" />
     
-    <UIRef Id="WixUI_Minimal" />
+    <ui:WixUI Id="WixUI_Minimal" />
 
     <WixVariable Id="WixUILicenseRtf" Value="$(var.ProjectDir)Assets\SETiLicense.rtf" />
     <WixVariable Id="WixUIDialogBmp" Value="$(var.ProjectDir)Assets\Background.jpg" />
@@ -43,5 +29,5 @@
 			<ComponentGroupRef Id="ProductComponents" />
       <ComponentGroupRef Id="PublishedComponents" />
 		</Feature>
-	</Product>
+	</Package>
 </Wix>

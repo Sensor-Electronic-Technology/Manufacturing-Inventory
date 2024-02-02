@@ -1,17 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<WixLocalization Culture="en-us" xmlns="http://schemas.microsoft.com/wix/2006/localization">
-  <String Id="Company">SETi</String>
+﻿<WixLocalization Culture="en-us" xmlns="http://wixtoolset.org/schemas/v4/wxl">
+  <String Id="Company" Value="SETi" />
 
-  <String Id="ProductNameFolder">ManufacturingInventory</String>
+  <String Id="ProductNameFolder" Value="ManufacturingInventory" />
 
-  <String Id="ProductName_x86">Manufacturing Inventory (32bit)</String>
-  <String Id="ProductName_x64">Manufacturing Inventory (64bit)</String>
+  <String Id="ProductName_x86" Value="Manufacturing Inventory (32bit)" />
+  <String Id="ProductName_x64" Value="Manufacturing Inventory (64bit)" />
 
-  <String Id="Description">Manufacturing Inventory Application</String>
-  <String Id="Comments">Nothing</String>
-  <String Id="Keywords">dotnet,core,application,installer</String>
+  <String Id="Description" Value="Manufacturing Inventory Application" />
+  <String Id="Comments" Value="Nothing" />
+  <String Id="Keywords" Value="dotnet,core,application,installer" />
 
-  <String Id="DowngradeErrorMessage">A newer version of Manufactuing Inventory is already installed.</String>
+  <String Id="DowngradeErrorMessage" Value="A newer version of Manufactuing Inventory is already installed." />
 
-  <String Id="Language">1033</String>
+  <String Id="Language" Value="1033" />
 </WixLocalization>
